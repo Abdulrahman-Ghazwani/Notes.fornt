@@ -1,19 +1,20 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { NotesListComponent } from './notes-list/notes-list.component';
+import { FormsModule } from '@angular/forms';
+
 import { NoteCreateComponent } from './note-create/note-create.component';
+import { NotesListComponent } from './notes-list/notes-list.component';
 import { NoteEditComponent } from './note-edit/note-edit.component';
-
-
 
 @NgModule({
   declarations: [
-    NotesListComponent,
     NoteCreateComponent,
+    NotesListComponent,
     NoteEditComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    FormsModule
   ]
 })
-export class NotesModule { }
+export class NotesModule {}

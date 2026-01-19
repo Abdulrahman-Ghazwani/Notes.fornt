@@ -1,1 +1,36 @@
-<p>note-create works!</p>
+<h2>Create Note</h2>
+
+<p *ngIf="successMessage" style="color: green;">
+  {{ successMessage }}
+</p>
+
+<p *ngIf="errorMessage" style="color: red;">
+  {{ errorMessage }}
+</p>
+
+<form #f="ngForm" (ngSubmit)="saveNote()">
+
+  <label for="title">Title</label><br>
+  <input
+    type="text"
+    id="title"
+    name="title"
+    [(ngModel)]="note.title"
+    required
+  />
+  <br><br>
+
+  <label for="note">Note</label><br>
+  <textarea
+    id="note"
+    name="note"
+    [(ngModel)]="note.note"
+    required
+  ></textarea>
+  <br><br>
+
+  <button type="submit" [disabled]="f.invalid">
+    Save
+  </button>
+
+</form>
