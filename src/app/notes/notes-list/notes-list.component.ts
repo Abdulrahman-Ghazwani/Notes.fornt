@@ -13,6 +13,8 @@ import { Note } from '../note.model';
 export class NotesListComponent implements OnInit{
   
   notes: Note[] = [];
+  errorMessage = '';
+  
 
   constructor(private notesService: NotesService){
 
@@ -22,16 +24,31 @@ export class NotesListComponent implements OnInit{
     this.loadNotes();
   }
 
-  loadNotes() {
-    this.notesService.getNotes().subscribe(data => {
-      this.notes = data;
-    })
+  loadNotes(): void{
+    this.notesService.getNotes().subscribe({
+      next: (data) => {
+        this.notes = data;
+      },
+      error: () => {
+        this.errorMessage = 'Failed to load notes';
+      }
+    });
   }
 
-  deleteNote(id: number){
-    this.notesService.deleteNote(id).subscribe(() => {
-      this.loadNotes();
-    })
-  }
 
+  deleteNote(id: number): void {
+    if (!confirm('Are you sure you want to delete this note?')) {
+      return;
+    }
+
+    this.notesService.deleteNote(id).subscribe({
+      next: () => {
+        // refresh list after delete
+        this.notes = this.notes.filter(note => note.id !== id);
+      },
+      error: () => {
+        alert('Failed to delete note');
+      }
+    });
+  }
 }

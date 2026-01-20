@@ -29,6 +29,15 @@
   ></textarea>
   <br><br>
 
+  <label for="endingDate">End Date</label><br>
+  <input 
+  type="date"
+  id="endingDate"
+  name="endingDate"
+  [(ngModel)]="note.endingDate"
+  >
+  <br><br>
+
   <button type="submit" [disabled]="f.invalid">
     Save
   </button>

@@ -1,1 +1,43 @@
-<p>note-edit works!</p>
+<h2> Edit Note </h2>
+
+<p *ngIf="successMessage" style="color: green;">{{successMessage}}</p>
+<p *ngIf="errorMessage" style="color: red;">{{errorMessage}}</p>
+
+
+<form *ngIf="note" #f="ngForm" (ngSubmit)="updateNote">
+
+    <label>Ttile</label><br>
+    <input 
+    type="text"
+    name="title"
+    [(ngModel)]="note.title"
+    required
+    />
+    <br><br>
+
+    <label>Note</label><br>
+    <textarea 
+    name="note"
+    [(ngModel)]="note.note"
+    required
+    ></textarea>
+    <br><br>
+
+
+
+    <label for="endingDate">End Date</label><br>
+    <input 
+    type="date"
+    id="endingDate"
+    name="endingDate"
+    [(ngModel)]="note.endingDate"
+    >
+    <br><br>
+
+
+
+    <button type="submit" [disabled]="f.invalid">
+        Update
+    </button>
+
+</form>

@@ -12,7 +12,8 @@ export class NoteCreateComponent {
 
   note: Note = {
     title: '',
-    note: ''
+    note: '',
+    endingDate: ''
   };
 
   constructor(
