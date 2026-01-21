@@ -10,7 +10,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class NoteEditComponent implements OnInit{
 
-  note!: Note;
+  id!: number;
+  note: Note = {title: '', note:''};
   successMessage = '';
   errorMessage = '';
 
@@ -22,9 +23,9 @@ export class NoteEditComponent implements OnInit{
 
 
   ngOnInit(): void {
-    const id = Number(this.route.snapshot.paramMap.get('id'));
+    this.id = Number(this.route.snapshot.paramMap.get('id'));
 
-    this.notesService.getNoteById(id).subscribe({
+    this.notesService.getNoteById(this.id).subscribe({
       next: (data) => {
         this.note = data;
       }, 
@@ -39,10 +40,12 @@ export class NoteEditComponent implements OnInit{
     this.successMessage = '';
     this.errorMessage = '';
 
-    this.notesService.updateNote(this.note.id!, this.note).subscribe({
-      next: () => {
-        this.successMessage = 'Note updated successfully';
-      }, 
+    if(!this.note.endingDate){
+      delete(this.note as any).endingDate;
+    }
+
+    this.notesService.updateNote(this.id, this.note).subscribe({
+      next: () => this.successMessage = 'Note updated successfully',
       error: () => {
         this.errorMessage = 'Failed to update note';
       }

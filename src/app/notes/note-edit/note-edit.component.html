@@ -4,7 +4,7 @@
 <p *ngIf="errorMessage" style="color: red;">{{errorMessage}}</p>
 
 
-<form *ngIf="note" #f="ngForm" (ngSubmit)="updateNote">
+<form *ngIf="note" #f="ngForm" (ngSubmit)="updateNote()">
 
     <label>Ttile</label><br>
     <input 

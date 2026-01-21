@@ -1,3 +1,32 @@
 <h2>All Notes</h2>
 
+<p *ngIf="errorMessage" style="color: red;">
+  {{ errorMessage }}
+</p>
 
+<p *ngIf="notes.length === 0">
+  No notes found.
+</p>
+
+<ul *ngIf="notes.length > 0">
+  <li *ngFor="let note of notes">
+    <b>{{ note.title }}</b>
+
+    <span *ngIf="note.endingDate">
+      | Ends: {{ note.endingDate }}
+    </span>
+
+    <br />
+
+    <a [routerLink]="['/notes/edit', note.id]">
+      Edit
+    </a>
+
+    |
+    <button (click)="deleteNote(note.id!)">
+      Delete
+    </button>
+
+    <hr />
+  </li>
+</ul>

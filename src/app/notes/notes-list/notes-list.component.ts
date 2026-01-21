@@ -11,12 +11,12 @@ import { Note } from '../note.model';
   styleUrls: ['./notes-list.component.css']
 })
 export class NotesListComponent implements OnInit{
-  
+
   notes: Note[] = [];
   errorMessage = '';
-  
 
-  constructor(private notesService: NotesService){
+  constructor(private notesService: NotesService)
+  {
 
   }
 
@@ -30,25 +30,25 @@ export class NotesListComponent implements OnInit{
         this.notes = data;
       },
       error: () => {
-        this.errorMessage = 'Failed to load notes';
+        this.errorMessage= 'Failed to load notes';
       }
     });
   }
 
-
   deleteNote(id: number): void {
-    if (!confirm('Are you sure you want to delete this note?')) {
+    if(!confirm('Are you sure you want to delete this note?')){
       return;
     }
 
     this.notesService.deleteNote(id).subscribe({
       next: () => {
-        // refresh list after delete
-        this.notes = this.notes.filter(note => note.id !== id);
+        this.notes = this.notes.filter(note=>note.id !== id);
       },
       error: () => {
-        alert('Failed to delete note');
+        alert('Falied to delete note');
       }
     });
   }
+  
+
 }
