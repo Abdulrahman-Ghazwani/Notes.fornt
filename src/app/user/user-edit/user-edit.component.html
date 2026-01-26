@@ -1,0 +1,39 @@
+<h2>Edit User</h2>
+
+<p *ngIf="successMessage" style="color: green;">{{ successMessage }}</p>
+<p *ngIf="errorMessage" style="color: red;">{{ errorMessage }}</p>
+
+<form *ngIf="user" #f="ngForm" (ngSubmit)="updateUser()">
+  <label>Name</label><br />
+  <input
+    type="text"
+    name="name"
+    [(ngModel)]="user.name"
+    required
+    minlength="2"
+  />
+  <br /><br />
+
+  <label>Username</label><br />
+  <input
+    type="text"
+    name="username"
+    [(ngModel)]="user.username"
+    required
+    minlength="3"
+  />
+  <br /><br />
+
+  <label>Email</label><br />
+  <input
+    type="email"
+    name="email"
+    [(ngModel)]="user.email"
+    required
+  />
+  <br /><br />
+
+  <button type="submit" [disabled]="f.invalid">Update</button>
+  &nbsp;
+  <a routerLink="/users">Back</a>
+</form>

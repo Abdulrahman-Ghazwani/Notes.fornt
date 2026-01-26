@@ -33,10 +33,10 @@ saveNote(): void {
     next: (res) => {
       console.log('✅ Saved:', res);
       this.successMessage = 'Note saved successfully';
-      this.note = { title: '', note: '' };
+      this.note = { title: '', note: ''};
     },
     error: (err) => {
-      console.error('❌ Save failed:', err);
+      console.error('Save failed:', err);
       this.errorMessage = `Failed to save note (status: ${err.status})`;
       if (err?.error) {
         console.error('Backend body:', err.error);
@@ -44,10 +44,4 @@ saveNote(): void {
     }
   });
 }
-
-
-
-
-
-
 }
