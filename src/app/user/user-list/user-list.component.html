@@ -20,7 +20,7 @@
       <td>{{ u.username }}</td>
       <td>{{ u.email }}</td>
       <td>
-        <a [routerLink]="['/users/edit', u.id]">Edit</a>
+        <a [routerLink]="['/user/edit', u.id]">Edit</a>
         &nbsp;|&nbsp;
         <button (click)="deleteUser(u.id!)">Delete</button>
       </td>
